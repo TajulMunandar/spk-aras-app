@@ -76,6 +76,14 @@ class _SearchPageContentState extends State<SearchPageContent> {
     }
   }
 
+  String classifyCholesterol() {
+    if (kolesterol >= 200) {
+      return 'Tinggi';
+    } else {
+      return 'Normal';
+    }
+  }
+
   Future<void> _loadUserData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? userProfileString = prefs.getString('user_profile');
@@ -189,7 +197,7 @@ class _SearchPageContentState extends State<SearchPageContent> {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
-                                      'Kolesterol: $kolesterol',
+                                      'Kolesterol: $kolesterol / (${classifyCholesterol()})',
                                       style: TextStyle(fontSize: 16),
                                     ),
                                     Text(

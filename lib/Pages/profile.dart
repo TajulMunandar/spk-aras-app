@@ -66,6 +66,14 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
     }
   }
 
+  String classifyCholesterol() {
+    if (cholesterol >= 200) {
+      return 'Tinggi';
+    } else {
+      return 'Normal';
+    }
+  }
+
   Future<void> _updateUserData(Map<String, dynamic> updatedData) async {
     try {
       final String? accessToken = await ApiService.getAccessToken();
@@ -167,7 +175,8 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
               _buildInfoField('Gender', gender),
               _buildInfoField('Height', '${height} cm'),
               _buildInfoField('Weight', '${weight} kg'),
-              _buildInfoField('Cholesterol', '${cholesterol} mg/dL'),
+              _buildInfoField('Cholesterol',
+                  '(${classifyCholesterol()}) - ${cholesterol} mg/dL'),
               _buildInfoField('Age', '${age} years'),
               SizedBox(height: 16),
               ElevatedButton(
