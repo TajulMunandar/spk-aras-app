@@ -48,7 +48,7 @@ class _SearchPageContentState extends State<SearchPageContent> {
       print('User ID: $userId');
 
       final response = await http.post(
-        Uri.parse('http://127.0.0.1:8000/api/aras'),
+        Uri.parse('https://cholesterol.silik-one.my.id/api/aras'),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -89,16 +89,32 @@ class _SearchPageContentState extends State<SearchPageContent> {
     String? userProfileString = prefs.getString('user_profile');
     String? dataString = prefs.getString('data');
 
+    print("Retrieved user_profile: $userProfileString");
+    print("Retrieved data: $dataString");
+
     if (userProfileString != null && dataString != null) {
       Map<String, dynamic> userProfile = jsonDecode(userProfileString);
       Map<String, dynamic> data = jsonDecode(dataString);
 
+      print("Decoded User Profile: $userProfile");
+      print("Decoded Data: $data");
+
+      // Use a temporary map to store the data with type conversion
+      Map<String, dynamic> tempData = {
+        'name': userProfile['name'] ?? '',
+        'tb': int.tryParse(data['tb'].toString()) ?? 0,
+        'bb': int.tryParse(data['bb'].toString()) ?? 0,
+        'kolesterol': int.tryParse(data['kolesterol'].toString()) ?? 0,
+        'umur': int.tryParse(data['umur'].toString()) ?? 0,
+      };
+
+      // Use setState only after processing the data
       setState(() {
-        name = userProfile['name'] ?? '';
-        tb = data['tb'] ?? 0;
-        bb = data['bb'] ?? 0;
-        kolesterol = data['kolesterol'] ?? 0;
-        umur = data['umur'] ?? 0;
+        name = tempData['name'];
+        tb = tempData['tb'];
+        bb = tempData['bb'];
+        kolesterol = tempData['kolesterol'];
+        umur = tempData['umur'];
       });
     }
   }

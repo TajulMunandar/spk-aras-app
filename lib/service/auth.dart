@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class ApiService {
   static Future<String?> authenticate(String username, String password) async {
     final response = await http.post(
-      Uri.parse('http://127.0.0.1:8000/api/login'),
+      Uri.parse('https://cholesterol.silik-one.my.id/api/login'),
       body: {
         'username': username,
         'password': password,

@@ -58,7 +58,8 @@ class FoodModel {
 }
 
 Future<List<FoodModel>> fetchFoods() async {
-  final response = await http.get(Uri.parse('http://127.0.0.1:8000/api/food'));
+  final response =
+      await http.get(Uri.parse('https://cholesterol.silik-one.my.id/api/food'));
 
   if (response.statusCode == 200) {
     final Map<String, dynamic> parsedJson = json.decode(response.body);

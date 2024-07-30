@@ -49,14 +49,17 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
         print("Data Profile: $dataProfile");
 
         setState(() {
-          userId = userProfile['id']; // Ensure ID is treated as String
+          userId = userProfile['id'] ?? 0; // Ensure ID is treated as int
           name = userProfile['name'] ?? '';
           gender = userProfile['jk'] ?? '';
-          height = dataProfile['tb'] ?? 0; // Ensure height is int
-          weight = dataProfile['bb'] ?? 0; // Ensure weight is int
-          cholesterol =
-              dataProfile['kolesterol'] ?? 0; // Ensure cholesterol is int
-          age = dataProfile['umur'] ?? 0; // Ensure age is int
+          height = int.tryParse(dataProfile['tb'].toString()) ??
+              0; // Ensure height is int
+          weight = int.tryParse(dataProfile['bb'].toString()) ??
+              0; // Ensure weight is int
+          cholesterol = int.tryParse(dataProfile['kolesterol'].toString()) ??
+              0; // Ensure cholesterol is int
+          age = int.tryParse(dataProfile['umur'].toString()) ??
+              0; // Ensure age is int
         });
       } else {
         print("User profile or data profile is null");
@@ -81,7 +84,7 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
         throw Exception('No access token found');
       }
       final url = Uri.parse(
-          'http://127.0.0.1:8000/api/profile'); // Ganti dengan URL API Anda
+          'https://cholesterol.silik-one.my.id/api/profile'); // Ganti dengan URL API Anda
       final response = await http.put(
         url,
         headers: {
