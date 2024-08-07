@@ -19,6 +19,9 @@ class _RegisterState extends State<Register> {
   final TextEditingController bbController = TextEditingController();
   final TextEditingController kolesterolController = TextEditingController();
   final TextEditingController umurController = TextEditingController();
+  final TextEditingController lemakController = TextEditingController();
+  final TextEditingController seratController = TextEditingController();
+  final TextEditingController proteinController = TextEditingController();
   String? _selectedGender;
   String? _selectedActivity;
 
@@ -52,6 +55,9 @@ class _RegisterState extends State<Register> {
           'bb': bbController.text,
           'kolesterol': kolesterolController.text,
           'umur': umurController.text,
+          'serat': seratController.text,
+          'lemak': lemakController.text,
+          'protein': proteinController.text,
         }),
       );
 
@@ -142,6 +148,13 @@ class _RegisterState extends State<Register> {
                       Icons.health_and_safety,
                       keyboardType: TextInputType.number),
                   _buildTextField(umurController, 'Age', Icons.cake,
+                      keyboardType: TextInputType.number),
+                  _buildTextField(
+                      lemakController, 'Lemak', Icons.fitness_center,
+                      keyboardType: TextInputType.number),
+                  _buildTextField(proteinController, 'Protein', Icons.set_meal,
+                      keyboardType: TextInputType.number),
+                  _buildTextField(seratController, 'Serat', Icons.eco,
                       keyboardType: TextInputType.number),
                   const SizedBox(height: 32),
                   ElevatedButton(

@@ -26,6 +26,9 @@ class _SearchPageContentState extends State<SearchPageContent> {
   int bb = 0;
   int kolesterol = 0;
   int umur = 0;
+  int serat = 0;
+  int protein = 0;
+  int lemak = 0;
   List<dynamic> foodData = [];
   List<Map<dynamic, dynamic>> recommendations = [];
 
@@ -105,6 +108,9 @@ class _SearchPageContentState extends State<SearchPageContent> {
         'bb': int.tryParse(data['bb'].toString()) ?? 0,
         'kolesterol': int.tryParse(data['kolesterol'].toString()) ?? 0,
         'umur': int.tryParse(data['umur'].toString()) ?? 0,
+        'serat': int.tryParse(data['serat'].toString()) ?? 0,
+        'protein': int.tryParse(data['protein'].toString()) ?? 0,
+        'lemak': int.tryParse(data['lemak'].toString()) ?? 0,
       };
 
       // Use setState only after processing the data
@@ -114,6 +120,9 @@ class _SearchPageContentState extends State<SearchPageContent> {
         bb = tempData['bb'];
         kolesterol = tempData['kolesterol'];
         umur = tempData['umur'];
+        serat = tempData['serat'];
+        lemak = tempData['lemak'];
+        protein = tempData['protein'];
       });
     }
   }
@@ -217,6 +226,32 @@ class _SearchPageContentState extends State<SearchPageContent> {
                                     ),
                                     Text(
                                       'Umur: $umur tahun',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Protein: $protein ',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                    Text(
+                                      'Lemak: $lemak',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      'Serat: $serat ',
                                       style: TextStyle(fontSize: 16),
                                     ),
                                   ],

@@ -28,6 +28,9 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
   int weight = 0;
   int cholesterol = 0;
   int age = 0;
+  int serat = 0;
+  int protein = 0;
+  int lemak = 0;
 
   @override
   void initState() {
@@ -59,6 +62,12 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
           cholesterol = int.tryParse(dataProfile['kolesterol'].toString()) ??
               0; // Ensure cholesterol is int
           age = int.tryParse(dataProfile['umur'].toString()) ??
+              0; // Ensure age is int
+          serat = int.tryParse(dataProfile['serat'].toString()) ??
+              0; // Ensure age is int
+          lemak = int.tryParse(dataProfile['lemak'].toString()) ??
+              0; // Ensure age is int
+          protein = int.tryParse(dataProfile['protein'].toString()) ??
               0; // Ensure age is int
         });
       } else {
@@ -100,6 +109,9 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
           'bb': updatedData['weight'].toString(),
           'kolesterol': updatedData['cholesterol'].toString(),
           'umur': updatedData['age'],
+          'serat': updatedData['serat'],
+          'lemak': updatedData['lemak'],
+          'protein': updatedData['protein'],
         }),
       );
 
@@ -120,6 +132,9 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
               'bb': updatedData['weight'],
               'kolesterol': updatedData['cholesterol'],
               'umur': updatedData['age'],
+              'serat': updatedData['serat'],
+              'lemak': updatedData['lemak'],
+              'protein': updatedData['protein'],
             }));
         _loadUserData(); // Reload user data after update
       } else {
@@ -181,6 +196,9 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
               _buildInfoField('Cholesterol',
                   '(${classifyCholesterol()}) - ${cholesterol} mg/dL'),
               _buildInfoField('Age', '${age} years'),
+              _buildInfoField('Lemak', '${lemak}'),
+              _buildInfoField('Protein', '${protein}'),
+              _buildInfoField('Serat', '${serat}'),
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
@@ -229,6 +247,9 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
             weight: weight,
             cholesterol: cholesterol,
             age: age,
+            serat: serat,
+            protein: protein,
+            lemak: lemak,
             onSave: (updatedData) async {
               await _updateUserData(updatedData);
               Navigator.pop(context);
@@ -247,6 +268,9 @@ class EditProfileForm extends StatefulWidget {
   final int weight;
   final int cholesterol;
   final int age;
+  final int serat;
+  final int protein;
+  final int lemak;
   final Function(Map<String, dynamic>) onSave;
 
   EditProfileForm({
@@ -256,6 +280,9 @@ class EditProfileForm extends StatefulWidget {
     required this.weight,
     required this.cholesterol,
     required this.age,
+    required this.serat,
+    required this.protein,
+    required this.lemak,
     required this.onSave,
   });
 
@@ -270,6 +297,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
   late TextEditingController _weightController;
   late TextEditingController _cholesterolController;
   late TextEditingController _ageController;
+  late TextEditingController _seratController;
+  late TextEditingController _proteinController;
+  late TextEditingController _lemakController;
   String _selectedGender = 'Laki-laki';
 
   @override
@@ -282,6 +312,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
     _cholesterolController =
         TextEditingController(text: widget.cholesterol.toString());
     _ageController = TextEditingController(text: widget.age.toString());
+    _seratController = TextEditingController(text: widget.serat.toString());
+    _proteinController = TextEditingController(text: widget.protein.toString());
+    _lemakController = TextEditingController(text: widget.lemak.toString());
   }
 
   @override
@@ -291,6 +324,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
     _weightController.dispose();
     _cholesterolController.dispose();
     _ageController.dispose();
+    _seratController.dispose();
+    _proteinController.dispose();
+    _lemakController.dispose();
     super.dispose();
   }
 
@@ -310,6 +346,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
             _buildTextField('Cholesterol (mg/dL)', _cholesterolController,
                 isNumeric: true),
             _buildTextField('Age (years)', _ageController, isNumeric: true),
+            _buildTextField('Lemak', _lemakController, isNumeric: true),
+            _buildTextField('Protein', _proteinController, isNumeric: true),
+            _buildTextField('Serat', _seratController, isNumeric: true),
             SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
@@ -322,6 +361,9 @@ class _EditProfileFormState extends State<EditProfileForm> {
                     'cholesterol':
                         int.tryParse(_cholesterolController.text) ?? 0,
                     'age': int.tryParse(_ageController.text) ?? 0,
+                    'lemak': int.tryParse(_lemakController.text) ?? 0,
+                    'protein': int.tryParse(_proteinController.text) ?? 0,
+                    'serat': int.tryParse(_seratController.text) ?? 0,
                   };
                   widget.onSave(updatedData);
                 }
