@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart'; // Import CarouselSlider package
 import 'package:spk_food_aras/component/bottom_nav_bar.dart'; // Import widget BottomNavBar
 import 'package:spk_food_aras/service/logout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -238,62 +237,53 @@ class _SearchPageContentState extends State<SearchPageContent> {
                       ),
                     ),
                     SizedBox(height: 14),
-                    // CarouselSlider
-                    CarouselSlider(
-                      options: CarouselOptions(
-                        height: 250.0,
-                        autoPlay: true,
-                        enlargeCenterPage: true,
-                        aspectRatio: 16 / 9,
-                        viewportFraction: 0.8,
-                      ),
-                      items: recommendations.map((item) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Container(
-                              width: MediaQuery.of(context).size.width,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 5.0, vertical: 5.0),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: recommendations.length,
+                        itemBuilder: (context, index) {
+                          final item = recommendations[index];
+                          return Card(
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 5.0, vertical: 5.0),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 5,
+                            child: Container(
                               decoration: BoxDecoration(
-                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(10),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black26,
-                                    blurRadius: 5.0,
-                                    offset: Offset(0, 2),
-                                  ),
-                                ],
                                 image: DecorationImage(
-                                  image: NetworkImage('assets/bg.png'),
+                                  image: AssetImage('assets/bg.png'),
                                   fit: BoxFit.cover,
                                 ),
                               ),
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      item['name'] ?? '',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.yellow.shade800),
-                                    ),
-                                    SizedBox(height: 8),
-                                    Text(
-                                      item['recommendation'] ?? '',
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  ],
+                                padding: const EdgeInsets.all(16.0),
+                                child: Center(
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        item['name'] ?? '',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.yellow.shade800),
+                                      ),
+                                      SizedBox(height: 8),
+                                      Text(
+                                        item['recommendation'] ?? '',
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
-                            );
-                          },
-                        );
-                      }).toList(),
+                            ),
+                          );
+                        },
+                      ),
                     ),
                   ],
                 ),
