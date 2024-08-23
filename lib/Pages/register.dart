@@ -140,22 +140,23 @@ class _RegisterState extends State<Register> {
                         setState(() => _selectedActivity = newValue),
                   ),
                   _buildTextField(tbController, 'Height (cm)', Icons.height,
-                      keyboardType: TextInputType.number),
+                      keyboardType: TextInputType.number, suffixText: 'cm'),
                   _buildTextField(
                       bbController, 'Weight (kg)', Icons.monitor_weight,
-                      keyboardType: TextInputType.number),
+                      keyboardType: TextInputType.number, suffixText: 'kg'),
                   _buildTextField(kolesterolController, 'Cholesterol Level',
                       Icons.health_and_safety,
                       keyboardType: TextInputType.number),
                   _buildTextField(umurController, 'Age', Icons.cake,
                       keyboardType: TextInputType.number),
                   _buildTextField(
-                      lemakController, 'Lemak', Icons.fitness_center,
-                      keyboardType: TextInputType.number),
-                  _buildTextField(proteinController, 'Protein', Icons.set_meal,
-                      keyboardType: TextInputType.number),
-                  _buildTextField(seratController, 'Serat', Icons.eco,
-                      keyboardType: TextInputType.number),
+                      lemakController, 'Lemak (g)', Icons.fitness_center,
+                      keyboardType: TextInputType.number, suffixText: 'g'),
+                  _buildTextField(
+                      proteinController, 'Protein (g)', Icons.set_meal,
+                      keyboardType: TextInputType.number, suffixText: 'g'),
+                  _buildTextField(seratController, 'Serat (g)', Icons.eco,
+                      keyboardType: TextInputType.number, suffixText: 'g'),
                   const SizedBox(height: 32),
                   ElevatedButton(
                     onPressed: _registerAndSubmitPatientData,
@@ -190,9 +191,13 @@ class _RegisterState extends State<Register> {
   }
 
   Widget _buildTextField(
-      TextEditingController controller, String label, IconData icon,
-      {bool obscureText = false,
-      TextInputType keyboardType = TextInputType.text}) {
+    TextEditingController controller,
+    String label,
+    IconData icon, {
+    bool obscureText = false,
+    TextInputType keyboardType = TextInputType.text,
+    String? suffixText,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: TextFormField(
@@ -206,6 +211,7 @@ class _RegisterState extends State<Register> {
               borderRadius: BorderRadius.circular(10.0),
               borderSide: BorderSide(color: Colors.yellow.shade600)),
           hintText: label,
+          suffixText: suffixText,
         ),
         validator: (value) =>
             value?.isEmpty ?? true ? 'Please enter $label' : null,
