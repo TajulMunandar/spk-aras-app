@@ -146,7 +146,7 @@ class _RegisterState extends State<Register> {
                       keyboardType: TextInputType.number, suffixText: 'kg'),
                   _buildTextField(kolesterolController, 'Cholesterol Level',
                       Icons.health_and_safety,
-                      keyboardType: TextInputType.number),
+                      keyboardType: TextInputType.number, suffixText: 'mg/dl'),
                   _buildTextField(umurController, 'Age', Icons.cake,
                       keyboardType: TextInputType.number),
                   _buildTextField(
