@@ -93,7 +93,7 @@ class _ProfilePageContentState extends State<ProfilePageContent> {
         throw Exception('No access token found');
       }
       final url = Uri.parse(
-          'https://cholesterol.silik-one.my.id/api/profile'); // Ganti dengan URL API Anda
+          'https://cholesterol.sirehatcerdas.online/api/profile'); // Ganti dengan URL API Anda
       final response = await http.put(
         url,
         headers: {

@@ -50,7 +50,7 @@ class _SearchPageContentState extends State<SearchPageContent> {
       print('User ID: $userId');
 
       final response = await http.post(
-        Uri.parse('https://cholesterol.silik-one.my.id/api/aras'),
+        Uri.parse('https://cholesterol.sirehatcerdas.online/api/aras'),
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -200,18 +200,18 @@ class _SearchPageContentState extends State<SearchPageContent> {
                                     ),
                                   ],
                                 ),
-                                SizedBox(height: 16),
+                                SizedBox(height: 12),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       'Tinggi Badan: $tb cm',
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                     Text(
                                       'Berat Badan: $bb kg',
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -222,11 +222,11 @@ class _SearchPageContentState extends State<SearchPageContent> {
                                   children: [
                                     Text(
                                       'Kolesterol: $kolesterol / (${classifyCholesterol()})',
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                     Text(
                                       'Umur: $umur tahun',
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -237,11 +237,11 @@ class _SearchPageContentState extends State<SearchPageContent> {
                                   children: [
                                     Text(
                                       'Protein: $protein ',
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                     Text(
                                       'Lemak: $lemak',
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -252,7 +252,7 @@ class _SearchPageContentState extends State<SearchPageContent> {
                                   children: [
                                     Text(
                                       'Serat: $serat ',
-                                      style: TextStyle(fontSize: 16),
+                                      style: TextStyle(fontSize: 12),
                                     ),
                                   ],
                                 ),
@@ -268,7 +268,7 @@ class _SearchPageContentState extends State<SearchPageContent> {
                       child: Text(
                         'Rekomendasi Makanan Sehatmu!',
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 12, fontWeight: FontWeight.bold),
                       ),
                     ),
                     SizedBox(height: 14),
